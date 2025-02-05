@@ -23,6 +23,15 @@
     </properties>
 
     <dependencies>
+<<<<<<< HEAD
+=======
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+>>>>>>> 0b66475 (Conectando ao MongoDB com repository e service)
         <!-- Spring Boot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
