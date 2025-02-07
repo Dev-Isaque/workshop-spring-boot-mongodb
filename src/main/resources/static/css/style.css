@@ -1,0 +1,10 @@
+body {
+    background-color: #121212;
+}
+
+@media (max-width: 768px) {
+    .card-form {
+        width: 90%;
+        padding: 20px;
+    }
+}

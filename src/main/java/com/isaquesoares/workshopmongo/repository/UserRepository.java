@@ -3,9 +3,9 @@ package com.isaquesoares.workshopmongo.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.isaquesoares.workshopmongo.domain.User;
+import com.isaquesoares.workshopmongo.model.User;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, String>{
-    
+public interface UserRepository extends MongoRepository<User, String> {
+    User findByEmail(String email);
 }

@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    
+    <div class="container mt-5">
+        <h2 class="text-center">Bem-vindo!</h2>
+        <p class="text-center">Você está logado como <span id="user-email"></span></p>
+        <button class="btn btn-danger" onclick="logout()">Sair</button>
+    </div>
+
+    <script>
+        document.getElementById("user-email").innerText = localStorage.getItem("email");
+
+        function logout() {
+            localStorage.removeItem("userId");
+            localStorage.removeItem("email");
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>
