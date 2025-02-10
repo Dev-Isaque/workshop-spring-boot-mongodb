@@ -1,26 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Index - Ghost Technology</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-    <div class="container mt-5">
-        <h2 class="text-center">Bem-vindo!</h2>
-        <p class="text-center">Você está logado como <span id="user-email"></span></p>
-        <button class="btn btn-danger" onclick="logout()">Sair</button>
+
+<body class="bg-white">
+
+    <div class="sidebar">
+        <div class="logo-details d-flex justify-content-between align-items-center">
+            <div class="logo-content me-2 d-flex align-items-center">
+                <img th:src="@{/img/logo-draw.png}" alt="Logo" class="logo me-2">
+                <div class="logo_name">Ghost Technology</div>
+            </div>
+            <i class="bi bi-list" id="btn"></i>
+        </div>
+
+        <ul class="nav-list pt-2">
+            <!-- Menu de Navegação -->
+            <li><a href="#"><i class="bi bi-grid"></i><span class="links_name">Dashboard</span></a></li>
+
+            <!-- Menu Finanças com Submenu -->
+            <li class="submenu">
+                <a href="javascript:void(0)" class="submenu-toggle"><i class="bi bi-wallet"></i><span
+                        class="links_name">Finanças</span>
+                    <i class="bi bi-chevron-down submenu-arrow"></i>
+                </a>
+                <ul class="submenu-list">
+                    <li><a href="#">Adicionar Transação</a></li>
+                    <li><a href="#">Visualizar Transações</a></li>
+                    <li><a href="#">Relatórios Financeiros</a></li>
+                </ul>
+            </li>
+
+            <!-- Menu Relatórios com Submenu -->
+            <li class="submenu">
+                <a href="javascript:void(0)" class="submenu-toggle"><i class="bi bi-bar-chart"></i><span
+                        class="links_name">Relatórios</span>
+                    <i class="bi bi-chevron-down submenu-arrow"></i>
+                </a>
+                <ul class="submenu-list">
+                    <li><a href="#">Relatório Mensal</a></li>
+                    <li><a href="#">Relatório Anual</a></li>
+                    <li><a href="#">Relatório Personalizado</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#"><i class="bi bi-pie-chart"></i><span class="links_name">Análises</span></a></li>
+            <li><a href="#"><i class="bi bi-gear"></i><span class="links_name">Configurações</span></a></li>
+
+            <li class="profile">
+                <div class="profile-details d-flex align-items-center">
+                    <div class="name_job">
+                        <div class="name">Gabriel Toledo</div>
+                        <div class="job">Frontend Developer</div>
+                    </div>
+                </div>
+                <i class="bi bi-box-arrow-right" id="log_out"></i>
+            </li>
+        </ul>
     </div>
 
-    <script>
-        document.getElementById("user-email").innerText = localStorage.getItem("email");
+    <!-- Conteúdo Principal -->
+    <main class="container mt-5">
+        <h1 class="text-center text-3xl font-bold">Bem-vindo à Página Inicial</h1>
+        <p class="text-center mt-3">Esta é a página principal do seu sistema de controle financeiro.</p>
+        <div class="text-center mt-4">
+            <button class="btn btn-primary">Adicionar Transação</button>
+            <button class="btn btn-secondary">Ver Relatórios</button>
+        </div>
+    </main>
 
-        function logout() {
-            localStorage.removeItem("userId");
-            localStorage.removeItem("email");
-            window.location.href = "login.html";
-        }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let sidebar = document.querySelector(".sidebar");
+            let closeBtn = document.querySelector("#btn");
+            let navList = document.querySelector(".nav-list");
+            let submenuToggles = document.querySelectorAll(".submenu-toggle");
+
+            // Começa fechado
+            sidebar.classList.remove("open");
+
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.toggle("open");
+                navList.classList.toggle("scroll");
+                menuBtnChange();
+            });
+
+            submenuToggles.forEach(toggle => {
+                toggle.addEventListener("click", () => {
+                    let submenu = toggle.nextElementSibling;
+                    submenu.classList.toggle("show");
+                    let arrow = toggle.querySelector(".submenu-arrow");
+                    arrow.classList.toggle("rotate");
+                });
+            });
+
+            function menuBtnChange() {
+                if (sidebar.classList.contains("open")) {
+                    closeBtn.classList.replace("bi-list", "bi-x");
+                } else {
+                    closeBtn.classList.replace("bi-x", "bi-list");
+                }
+            }
+        });
     </script>
+
 </body>
+
 </html>
